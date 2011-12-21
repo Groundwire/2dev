@@ -1,0 +1,37 @@
+<apex:page controller="GW_CTRL_ClippingHelp">
+	<apex:form >
+		<apex:pageblock title="Clipping Help" mode="Edit">
+			<apex:pagemessages />
+			<apex:pageBlockButtons >
+				<apex:commandButton action="{!save}" value="Save" immediate="false"/>
+			</apex:pageBlockButtons>
+			<apex:pageBlockSection title="Using the Clipping Bookmarklet" columns="1" rendered="{!NOT(ISNULL(bookmarklink))}">
+				<b><a href="{!bookmarkLink}" title="Clipping">Bookmarklet Link</a></b>
+				<apex:outputText >
+					<ul>
+						<li>To create a Clipping, drag the link above into your browser's Bookmarks toolbar, or copy the link and create a new bookmark.</li>
+						<li>Navigate to any web page you wish to clip and save to Salesforce.</li>
+						<li>Highlight the body of the text you wish to save.</li>
+						<li>Click on your Clipping bookmark. You should be redirected to a New Clipping page with Name, URL, and Content sections already filled in.</li>
+					</ul>
+				</apex:outputText>
+			</apex:pageBlockSection>
+			<apex:pageBlockSection title="Field IDs" columns="1">
+				<apex:outputText >
+					<p><b>Clipping</b> requires the Salesforce ID of two fields to function. If the fields below are empty: 
+						<ul>
+							<li>Navigate to <i>Setup > App Setup > Create > Objects > Clipping</i>. </li>
+							<li>In the <i>Custom Fields &amp; Relationships</i> section, click on <b>Clipping Content</b>.</li>
+							<li>In this page's URL, copy the 15 character Salesforce ID. (If the Clipping Content field URL is <i>https://na2.salesforce.com/00N40000001yegj</i> - the ID is <i>00N40000001yegj</i>)</li>
+							<li>Paste the ID into its field below.</li>
+							<li>Repeat the steps above for <b>Clipping URL</b>.</li>
+						</ul>
+					</p>
+					<p>You may need to ask a system administrator for the Clipping field IDs.</p><br/>
+				</apex:outputText>	
+				<apex:inputField value="{!clipsetting.Clipping_Content_Field_ID__c}" required="true"/>
+				<apex:inputField value="{!clipsetting.Clipping_URL_Field_ID__c}" required="true"/>
+			</apex:pageBlockSection>
+		</apex:pageblock>
+	</apex:form>
+</apex:page>

@@ -1,0 +1,88 @@
+<apex:page controller="GW_CTRL_viewAttachments" title="Attachments">
+	<apex:form >
+		<apex:sectionHeader title="Attachments"/>
+			<div style="position: relative;">
+				<apex:outputpanel >
+					<apex:actionstatus id="status">
+						<apex:facet name="start">
+							<div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb;
+								height: 100%;opacity:0.85;width:100%;"> 
+								<div class="waitingHolder" style="top: 74.2px; width: 91px;">
+								<img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+								<span class="waitingDescription">Loading...</span>
+							</div>
+							</div>
+						</apex:facet>
+					</apex:actionstatus>
+				</apex:outputpanel>
+			<apex:pageblock >
+				<apex:pageblocktable value="{!attachmentList}" var="a" id="attachmentTable">
+					<apex:column >
+						<apex:facet name="header">Action</apex:facet>
+						<apex:outputLink value="{!URLFOR($Action.Attachment.Download, a.Id)}">Download</apex:outputLink>
+					</apex:column>
+					<apex:column >
+						<apex:facet name="header">
+							<apex:commandlink value="Attachment {!IF(sortField='Name',IF(sortDescending,'v','^'),'')}" action="{!sort}" rerender="attachmentTable" status="status">
+								<apex:param value="Name" assignto="{!sortField}"/>
+							</apex:commandlink>
+						</apex:facet>
+						<apex:outputLink value="/{!a.Id}">{!a.Name}</apex:outputLink>
+					</apex:column>
+					<apex:column >
+						<apex:facet name="header">
+							<apex:commandlink value="Created By {!IF(sortField='CreatedBy.Name',IF(sortDescending,'v','^'),'')}" action="{!sort}" rerender="attachmentTable" status="status">
+								<apex:param value="CreatedBy.Name" assignto="{!sortField}"/>
+							</apex:commandlink>
+						</apex:facet>
+						<apex:outputfield value="{!a.CreatedByID}"/>
+					</apex:column>
+					<apex:column >
+						<apex:facet name="header">
+							<apex:commandlink value="Date {!IF(sortField='LastModifiedDate',IF(sortDescending,'v','^'),'')}" action="{!sort}" rerender="attachmentTable" status="status">
+								<apex:param value="LastModifiedDate" assignto="{!sortField}"/>
+							</apex:commandlink>
+						</apex:facet>
+						<apex:outputField value="{!a.LastModifiedDate}"/>
+					</apex:column>
+					<apex:column >
+						<apex:facet name="header">
+							<apex:commandlink value="Type {!IF(sortField='ContentType',IF(sortDescending,'v','^'),'')}" action="{!sort}" rerender="attachmentTable" status="status">
+								<apex:param value="ContentType" assignto="{!sortField}"/>
+							</apex:commandlink>
+						</apex:facet>
+						<apex:outputText value="{!a.ContentType}"/>
+					</apex:column>
+					<apex:column >
+						<apex:facet name="header">
+							<apex:commandlink value="Size {!IF(sortField='BodyLength',IF(sortDescending,'v','^'),'')}" action="{!sort}" rerender="attachmentTable" status="status">
+								<apex:param value="BodyLength" assignto="{!sortField}"/>
+							</apex:commandlink>
+						</apex:facet>
+						<apex:outputText value="{0, number, #,##0}K">
+       						<apex:param value="{!((a.BodyLength) / 1024)}" />
+ 						</apex:outputText>
+					</apex:column>
+					<apex:column >
+						<apex:facet name="header">
+							<apex:commandlink value="Parent {!IF(sortField='Parent.Name',IF(sortDescending,'v','^'),'')}" action="{!sort}" rerender="attachmentTable" status="status">
+								<apex:param value="Parent.Name" assignto="{!sortField}"/>
+							</apex:commandlink>					
+						</apex:facet>
+						<apex:outputLink value="/{!a.Parent}">	
+							<apex:outputText value="{!a.Parent.Name}"/>
+						</apex:outputLink>
+					</apex:column>
+					<apex:column >
+						<apex:facet name="header">
+							<apex:commandlink value="Parent Type {!IF(sortField='Parent.Type',IF(sortDescending,'v','^'),'')}" action="{!sort}" rerender="attachmentTable" status="status">
+								<apex:param value="Parent.Type" assignto="{!sortField}"/>
+							</apex:commandlink>
+						</apex:facet>
+						<apex:outputText value="{!a.Parent.Type}"/>
+					</apex:column>
+				</apex:pageblocktable>
+			</apex:pageblock>
+		</div>
+	</apex:form>
+</apex:page>

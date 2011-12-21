@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <customSettingsVisibility>Public</customSettingsVisibility>
+    <description>Clipping Custom Settings.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Clipping_Content_Field_ID__c</fullName>
+        <description>The Salesforce ID of the Clipping Content field, on the Clipping custom object.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Navigate to Setup &gt; App Setup &gt; Create &gt; Objects &gt; Clipping.
+In the Custom Fields &amp; Relationships section, click on Clipping Content.
+In this page&apos;s URL, the 15 character Salesforce ID is the Clipping Content Field ID.</inlineHelpText>
+        <label>Clipping Content Field ID</label>
+        <length>15</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Clipping_URL_Field_ID__c</fullName>
+        <description>The Salesforce ID of the Clipping URL field, on the Clipping custom object.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Navigate to Setup &gt; App Setup &gt; Create &gt; Objects &gt; Clipping.
+In the Custom Fields &amp; Relationships section, click on Clipping URL.
+In this page&apos;s URL, the 15 character Salesforce ID is the Clipping Content Field ID.</inlineHelpText>
+        <label>Clipping URL Field ID</label>
+        <length>15</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Clipping Settings</label>
+</CustomObject>
