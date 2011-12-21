@@ -2,3 +2,4 @@
 .settings/
 Referenced Packages/
 salesforce.schema
+src/package.xml
